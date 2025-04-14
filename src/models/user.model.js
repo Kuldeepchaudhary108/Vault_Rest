@@ -24,10 +24,21 @@ const UserSchema = new Schema(
     role: {
       type: String,
       required: true,
+      default:"viewer",
       enum: ["admin", "editor", "viewer"],
     },
     refreshToken: {
       type: String,
+    },
+    roleRequest: {
+      type: String,
+      enum: ["admin", "editor", "viewer", null],
+      default: null,
+    },
+    roleRequestStatus: {
+      type: String,
+      enum: ["pending", "approved", "rejected", null],
+      default: null,
     },
   },
 

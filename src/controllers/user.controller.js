@@ -245,6 +245,28 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, user, "Avatar image updated successfully "));
 });
 
+const requestRoleUpgrade = asyncHandler(async (req, res) => {
+  const { requestedRole } = req.body;
+
+  if (!["admin", "editor"].includes(requestedRole)) {
+    throw new ApiError(400, "Invalid role requested");
+  }
+
+  const user = await User.findById(req.user._id);
+
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
+
+  user.roleRequest = requestedRole;
+  user.roleRequestStatus = "pending";
+  await user.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Role request submitted"));
+});
+
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
     req.cookies.refreshToken || req.body.refreshToken;
@@ -299,4 +321,5 @@ export {
   updateAccountDetails,
   updateUserAvatar,
   refreshAccessToken,
+  requestRoleUpgrade,
 };
