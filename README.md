@@ -11,8 +11,8 @@ A secure file upload and management system built with Node.js, Express, JWT, and
 - 🧾 Role-Based Access Control (Admin, Editor, Viewer)
 - ☁️ Cloudinary File Upload
 - 📤 Upload multiple files
-- 📄 Fetch all uploaded files (admin/editor)
-- 🗑️ Delete uploaded files
+- 📄 Fetch all uploaded files (for all )
+- 🗑️ Delete uploaded files(admin/editor)
 - 🔍 View specific file by ID
 - 🔐 Role Upgrade Request & Approval (Admin-only)
 
@@ -25,8 +25,7 @@ A secure file upload and management system built with Node.js, Express, JWT, and
 - **JWT Authentication**
 - **Multer (File Uploads)**
 - **Cloudinary (Cloud Storage)**
-- **Tailwind CSS** (for frontend if used)
-- **React.js** (if frontend is included)
+
 
 ---
 
@@ -83,27 +82,24 @@ Edit
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/secure-document-vault.git
-   cd secure-document-vault
-Install dependencies
+   git clone https://github.com/Kuldeepchaudhary108/Vault_Rest.git
+   cd Vault_Rest
+2. **Install dependencies**
 
-bash
-Copy
-Edit
-npm install
-Configure .env Create a .env file in root with:
+  ```bash
+   npm install
+  
+3. **Configure .env Create a .env file in root with:**
+  
+   ```env
+   
+     MONGODB_URI=your_mongodb_connection
+     JWT_SECRET=your_jwt_secret
+     CLOUDINARY_CLOUD_NAME=your_cloud_name
+     CLOUDINARY_API_KEY=your_api_key
+     CLOUDINARY_API_SECRET=your_api_secret
 
-env
-Copy
-Edit
-MONGODB_URI=your_mongodb_connection
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-Start the server
 
-bash
-Copy
-Edit
-npm run dev
+4. **Start the server**
+
+      ```npm run dev
