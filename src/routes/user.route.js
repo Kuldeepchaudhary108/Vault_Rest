@@ -11,7 +11,7 @@ import {
 } from "../controllers/user.controller.js";
 
 import { authorizeRoles } from "../middlewares/role.middleware.js";
-import { uploadFile } from "../controllers/file.controller.js";
+import { getAllfile, uploadFile } from "../controllers/file.controller.js";
 const router = Router();
 // const upload = multer();
 router.route("/signup").post(signup);
@@ -33,6 +33,7 @@ router
     uploadFile
   );
 
+router.route("/all-files").get(verifyJWT, getAllfile);
 router
   .route("/file/:id")
   .get(verifyJWT, authorizeRoles("admin", "editor", "viewer"));

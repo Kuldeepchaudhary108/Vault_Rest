@@ -15,18 +15,18 @@ const FileSchema = new Schema(
       ref: "User",
       required: true,
     },
-    accessHistory: [
-      {
-        accessedBy: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        accessedAt: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
+    // accessHistory: [
+    //   {
+    //     accessedBy: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: "User",
+    //     },
+    //     accessedAt: {
+    //       type: Date,
+    //       default: Date.now,
+    //     },
+    //   },
+    // ],
   },
   { timestamps: true }
 );

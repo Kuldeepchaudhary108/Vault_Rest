@@ -35,11 +35,28 @@ const signup = asyncHandler(async (req, res) => {
   if (existUser) {
     throw new ApiError(400, "email is already exist ");
   }
+  if (!req.file) {
+    throw new ApiError(400, "1 Avatar file is missing");
+  }
+  console.log("file :", req.file);
+
+  const avatarLocalPath = req.file?.path;
+
+  if (!avatarLocalPath) {
+    throw new ApiError(400, "2 Avatar file is missing");
+  }
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!avatar.url) {
+    throw new ApiError(400, "Error while uploading on avatar");
+  }
 
   const user = await User.create({
     fullName,
     email,
     password,
+    avatar: avatar.url,
   });
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
@@ -155,8 +172,6 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 });
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
-  console.log(req.file);
-
   if (!req.file) {
     throw new ApiError(400, "1 Avatar file is missing");
   }
