@@ -1,5 +1,6 @@
 import { File } from "../models/file.model.js";
 import { User } from "../models/user.model.js";
+import { deleteFileFromCloud } from "../utils/cloudinary.js";
 import {
   asyncHandler,
   ApiError,
@@ -32,6 +33,7 @@ const uploadFile = asyncHandler(async (req, res) => {
     filename: uploadedCloudinaryFile.original_filename,
     path: uploadedCloudinaryFile.url,
     uploader: user,
+    publicId: uploadedCloudinaryFile.public_id,
   });
 
   const createdFile = await File.findById(file._id);
@@ -51,5 +53,37 @@ const getAllfile = asyncHandler(async (req, res) => {
 
   res.status(202).json(new ApiResponse(201, files, "all files are fetched "));
 });
+const getById = asyncHandler(async (req, res) => {
+  const { fileId } = req.params;
+  const file = await File.findById(fileId);
+  if (!file) {
+    throw new ApiError(404, "file is not found");
+  }
 
-export { uploadFile,getAllfile };
+  res.status(202).json(new ApiResponse(202, file, "file found successfully "));
+});
+const deletFile = asyncHandler(async (req, res) => {
+  const { fileId } = req.params;
+
+  const file = await File.findById(fileId);
+
+  if (!file) {
+    throw new ApiError(404, "File is not found ");
+  }
+  console.log(file.publicId);
+
+  const sendingToDeletfn = await deleteFileFromCloud(file.publicId);
+
+  if (!sendingToDeletfn) {
+    throw new ApiError(403, "error comes from sending to deletfn");
+  }
+
+  const delet = await File.findByIdAndDelete(file._id);
+
+  if (!delet) {
+    throw new ApiError(403, "error in delet from mongoos");
+  }
+  res.status(200).json(new ApiResponse(200, "given file is deleted"));
+});
+
+export { uploadFile, getAllfile, deletFile, getById };

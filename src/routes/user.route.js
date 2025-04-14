@@ -8,10 +8,16 @@ import {
   changeCurrentPassword,
   getCurrentUser,
   updateUserAvatar,
+  requestRoleUpgrade,
 } from "../controllers/user.controller.js";
 
 import { authorizeRoles } from "../middlewares/role.middleware.js";
-import { getAllfile, uploadFile } from "../controllers/file.controller.js";
+import {
+  deletFile,
+  getAllfile,
+  getById,
+  uploadFile,
+} from "../controllers/file.controller.js";
 const router = Router();
 // const upload = multer();
 router.route("/signup").post(signup);
@@ -35,8 +41,13 @@ router
 
 router.route("/all-files").get(verifyJWT, getAllfile);
 router
-  .route("/file/:id")
-  .get(verifyJWT, authorizeRoles("admin", "editor", "viewer"));
+  .route("/delet-file/:fileId")
+  .delete(verifyJWT, authorizeRoles("admin", "editor"), deletFile);
+router
+  .route("/file/:fileId")
+  .get(verifyJWT, authorizeRoles("admin", "editor", "viewer"), getById);
+
+router.route("/request-role-upgrade").post(verifyJWT, requestRoleUpgrade);
 
 // avtar
 

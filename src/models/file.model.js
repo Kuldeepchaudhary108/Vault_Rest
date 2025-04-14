@@ -15,6 +15,9 @@ const FileSchema = new Schema(
       ref: "User",
       required: true,
     },
+    publicId: {
+      type: String,
+    },
     // accessHistory: [
     //   {
     //     accessedBy: {

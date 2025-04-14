@@ -35,28 +35,28 @@ const signup = asyncHandler(async (req, res) => {
   if (existUser) {
     throw new ApiError(400, "email is already exist ");
   }
-  if (!req.file) {
-    throw new ApiError(400, "1 Avatar file is missing");
-  }
+  // if (!req.file) {
+  //   throw new ApiError(400, "1 Avatar file is missing");
+  // }
   console.log("file :", req.file);
 
-  const avatarLocalPath = req.file?.path;
+  // const avatarLocalPath = req.file?.path;
 
-  if (!avatarLocalPath) {
-    throw new ApiError(400, "2 Avatar file is missing");
-  }
+  // if (!avatarLocalPath) {
+  //   throw new ApiError(400, "2 Avatar file is missing");
+  // }
 
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
+  // const avatar = await uploadOnCloudinary(avatarLocalPath);
 
-  if (!avatar.url) {
-    throw new ApiError(400, "Error while uploading on avatar");
-  }
+  // if (!avatar.url) {
+  //   throw new ApiError(400, "Error while uploading on avatar");
+  // }
 
   const user = await User.create({
     fullName,
     email,
     password,
-    avatar: avatar.url,
+    // avatar: avatar.url,
   });
   const createdUser = await User.findById(user._id).select(
     "-password -refreshToken"
@@ -224,7 +224,7 @@ const requestRoleUpgrade = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Role request submitted"));
+    .json(new ApiResponse(200, user, "Role request submitted"));
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {

@@ -1,8 +1,8 @@
-import { Router } from "express";
+import Router from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {
-    getPendingRoleRequests,
-    handleRoleRequest,
+  getPendingRoleRequests,
+  handleRoleRequest,
 } from "../controllers/admin.controller.js";
 import { authorizeRoles } from "../middlewares/role.middleware.js";
 
@@ -13,7 +13,7 @@ router
 
 router
   .route("/role-requests/:id")
-  .post(verifyJWT, authorizeRoles("admin"), handleRoleRequest);
+  .patch(verifyJWT, authorizeRoles("admin"), handleRoleRequest);
 router.route;
 
 export default router;
