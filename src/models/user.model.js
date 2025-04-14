@@ -23,8 +23,8 @@ const UserSchema = new Schema(
     },
     role: {
       type: String,
-      required: true,
-      default:"viewer",
+      // required: true,
+      default: "viewer",
       enum: ["admin", "editor", "viewer"],
     },
     refreshToken: {

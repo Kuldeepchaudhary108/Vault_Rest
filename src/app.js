@@ -10,8 +10,9 @@ app.use(
     credentials: true,
   })
 );
+// { extended: true, limit: "20kb" }
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: "20kb" }));
+app.use(express.urlencoded());
 app.use(express.static("public"));
 app.use(cookieParser());
 
