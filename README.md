@@ -86,12 +86,12 @@ Edit
    cd Vault_Rest
 2. **Install dependencies**
 
-  ```bash
-   npm install
+   ```bash
+    npm install
   
 3. **Configure .env Create a .env file in root with:**
   
-   ```env
+    ```env
    
      MONGODB_URI=your_mongodb_connection
      JWT_SECRET=your_jwt_secret
