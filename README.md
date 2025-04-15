@@ -26,49 +26,51 @@ A secure file upload and management system built with Node.js, Express, JWT, and
 - **Multer (File Uploads)**
 - **Cloudinary (Cloud Storage)**
 
-
 ---
 
 ## 📁 API Routes
 
 ### 🧑‍💻 Auth & User
+
 /api/v1/users/
 
-| Method | Route                 | Description                    |
-|--------|----------------------|--------------------------------|
-| POST   | `/signup`            | Create a new user              |
-| POST   | `/login`             | Login user                     |
-| POST   | `/logout`            | Logout current user            |
-| PATCH  | `/change/password`   | Change user password           |
-| GET    | `/current-user`      | Get logged-in user details     |
-| POST   | `/change/avatarImage`| Upload/update avatar image     |
-| POST   | `/request-role-upgrade` | Request role upgrade         |
+| Method | Route                   | Description                |
+| ------ | ----------------------- | -------------------------- |
+| POST   | `/signup`               | Create a new user          |
+| POST   | `/login`                | Login user                 |
+| POST   | `/logout`               | Logout current user        |
+| PATCH  | `/change/password`      | Change user password       |
+| GET    | `/current-user`         | Get logged-in user details |
+| POST   | `/change/avatarImage`   | Upload/update avatar image |
+| POST   | `/request-role-upgrade` | Request role upgrade       |
 
 ---
 
 ### 📄 File Routes
+
 /api/v1/users/
 
 | Method | Route                 | Description                             |
-|--------|----------------------|-----------------------------------------|
-| POST   | `/upload-file`       | Upload one or more files (admin/editor) |
-| GET    | `/all-files`         | Get all uploaded files (admin/editor)   |
-| GET    | `/file/:fileId`      | Get file by ID (admin/editor/viewer)    |
-| DELETE | `/delet-file/:fileId`| Delete file (admin/editor)              |
+| ------ | --------------------- | --------------------------------------- |
+| POST   | `/upload-file`        | Upload one or more files (admin/editor) |
+| GET    | `/all-files`          | Get all uploaded files (admin/editor)   |
+| GET    | `/file/:fileId`       | Get file by ID (admin/editor/viewer)    |
+| DELETE | `/delet-file/:fileId` | Delete file (admin/editor)              |
 
 ---
 
 ### 🛠️ Admin Routes
+
 /api/v1/admin/
 
-| Method | Route                       | Description                         |
-|--------|----------------------------|-------------------------------------|
-| GET    | `/role-requests`           | Get all pending role requests       |
-| PATCH  | `/role-requests/:id`       | Approve or reject role request      |
+| Method | Route                | Description                    |
+| ------ | -------------------- | ------------------------------ |
+| GET    | `/role-requests`     | Get all pending role requests  |
+| PATCH  | `/role-requests/:id` | Approve or reject role request |
 
 ---
 
-## 📁 Folder Structure
+<!-- ## 📁 Folder Structure
 
 project-root/ │ ├── src/ │ ├── controllers/ │ ├── middlewares/ │ ├── routes/ │ ├── utils/ │ ├── models/ │ └── server.js │ ├── public/temp/ // Temporary local uploads ├── .env // Environment variables ├── README.md └── package.json
 
@@ -76,7 +78,7 @@ yaml
 Copy
 Edit
 
----
+--- -->
 
 ## 🔧 Setup Instructions
 
@@ -84,22 +86,28 @@ Edit
    ```bash
    git clone https://github.com/Kuldeepchaudhary108/Vault_Rest.git
    cd Vault_Rest
+   ```
 2. **Install dependencies**
 
    ```bash
     npm install
-  
-3. **Configure .env Create a .env file in root with:**
-  
-    ```env
-   
-     MONGODB_URI=your_mongodb_connection
-     JWT_SECRET=your_jwt_secret
-     CLOUDINARY_CLOUD_NAME=your_cloud_name
-     CLOUDINARY_API_KEY=your_api_key
-     CLOUDINARY_API_SECRET=your_api_secret
 
+   ```
+
+3. **Configure .env Create a .env file in root with:**
+
+   ```env
+
+    MONGODB_URI=your_mongodb_connection
+    JWT_SECRET=your_jwt_secret
+    CLOUDINARY_CLOUD_NAME=your_cloud_name
+    CLOUDINARY_API_KEY=your_api_key
+    CLOUDINARY_API_SECRET=your_api_secret
+
+   ```
 
 4. **Start the server**
 
-      ```npm run dev
+   ```npm run dev
+
+   ```
